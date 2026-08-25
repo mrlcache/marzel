@@ -1,0 +1,9 @@
+name = "marzel-api"
+main = "src/index.js"
+compatibility_date = "2026-07-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+APP_ORIGIN = "https://marzel.space"
+ANALYTICS_ENABLED = "true"
+POSTHOG_API_HOST = "https://us.i.posthog.com"

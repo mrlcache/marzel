@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A private reference for Marzel's button system.">
+  <title>Marzel button reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css"><link rel="stylesheet" href="product.css"><link rel="stylesheet" href="editor.css"><link rel="stylesheet" href="account.css"><link rel="stylesheet" href="buttons.css">
+</head>
+<body class="button-reference">
+  <div class="theme-wipe" aria-hidden="true"></div>
+  <main class="button-reference-main">
+    <header class="button-reference-head">
+      <div><span class="lab solid">Marzel</span><h1>Buttons</h1></div>
+      <div class="tabs theme" aria-label="Reference theme">
+        <button class="tab" type="button" data-button-theme="light" aria-pressed="true">Paper</button><button class="tab" type="button" data-button-theme="dark" aria-pressed="false">Ink</button>
+      </div>
+    </header>
+
+    <p class="button-reference-note">A separate, working reference for every button treatment used in the Writer. Frequent controls respond immediately; movement is reserved for a meaningful change of place or state.</p>
+
+    <section class="button-group" aria-labelledby="actions-title">
+      <div class="button-group-label"><span class="lab">01 / actions</span><h2 id="actions-title">Primary actions</h2></div>
+      <div class="button-group-content button-row">
+        <button class="btn" type="button" data-button-feedback="Project created">New project <span aria-hidden="true">→</span></button>
+        <button class="btn ghost" type="button" data-button-feedback="Export ready">Export library</button>
+        <button class="btn tiny" type="button" data-button-feedback="New note started">+ New</button>
+        <button class="btn ghost tiny" type="button" data-button-feedback="Project deleted">Delete project</button>
+        <button class="btn" type="button" disabled>Unavailable</button>
+        <button class="sheet-export" type="button" data-button-feedback="Project export opened">Export project</button>
+        <button class="provider" type="button" data-button-feedback="Google sign-in selected">Continue with Google</button>
+      </div>
+    </section>
+
+    <section class="button-group" aria-labelledby="choices-title">
+      <div class="button-group-label"><span class="lab">02 / choices</span><h2 id="choices-title">Tabs and modes</h2></div>
+      <div class="button-group-content button-stack">
+        <div class="tabs" data-button-tabs aria-label="Manuscript mode"><button class="tab" type="button" role="tab" aria-selected="true">Draft</button><button class="tab" type="button" role="tab" aria-selected="false">Revised</button><button class="tab" type="button" role="tab" aria-selected="false">Final</button></div>
+        <div class="tabs fill button-wide-tabs" data-button-tabs aria-label="Writing form"><button class="tab" type="button" role="tab" aria-selected="true">Prose</button><button class="tab" type="button" role="tab" aria-selected="false">Screenplay</button></div>
+      </div>
+    </section>
+
+    <section class="button-group" aria-labelledby="tools-title">
+      <div class="button-group-label"><span class="lab">03 / editor</span><h2 id="tools-title">Formatting controls</h2></div>
+      <div class="button-group-content button-stack">
+        <div class="format-set button-format-set" aria-label="Text formatting">
+          <button class="format-btn type-size" type="button" aria-label="Decrease text size" data-button-feedback="Text size decreased">A−</button><button class="format-btn type-size" type="button" aria-label="Increase text size" data-button-feedback="Text size increased">A+</button><button class="format-btn strong" type="button" aria-label="Bold" aria-pressed="false" data-button-toggle>B</button><button class="format-btn italic" type="button" aria-label="Italic" aria-pressed="false" data-button-toggle>I</button>
+        </div>
+        <div class="format-set button-format-set" aria-label="Typeface"><button class="format-btn typeface" type="button" aria-pressed="true" data-button-tabs>Serif</button><button class="format-btn typeface" type="button" aria-pressed="false" data-button-tabs>Sans</button></div>
+        <div class="button-icon-row" aria-label="Icon controls"><button class="icon-btn" type="button" aria-label="Undo" data-button-feedback="Undo">↶</button><button class="icon-btn" type="button" aria-label="Redo" data-button-feedback="Redo">↷</button><button class="icon-btn" type="button" aria-label="Focus mode" aria-pressed="false" data-button-toggle>⌁</button><button class="icon-btn sm" type="button" aria-label="Close" data-button-feedback="Closed">×</button></div>
+      </div>
+    </section>
+
+    <section class="button-group" aria-labelledby="links-title">
+      <div class="button-group-label"><span class="lab">04 / quiet actions</span><h2 id="links-title">Text controls</h2></div>
+      <div class="button-group-content button-row">
+        <a class="text-action" href="#feedback" data-button-feedback="Opening the chapter">Open chapter <span aria-hidden="true">→</span></a>
+        <button class="button-plain-action" type="button" data-button-feedback="Checkpoint restored">Restore checkpoint</button>
+        <button class="button-plain-action danger-action" type="button" data-button-feedback="Delete needs confirmation">Delete chapter</button>
+      </div>
+    </section>
+
+    <section class="button-group button-group-tables" aria-labelledby="tables-title">
+      <div class="button-group-label"><span class="lab">05 / tables</span><h2 id="tables-title">Rows, lists and records</h2></div>
+      <div class="button-group-content reference-tables">
+        <div class="reference-table-block"><span class="lab">Compact rows</span><div class="rows reference-frame"><button class="row-item" type="button" data-reference-row><span class="txt">The Error in the Sky</span><span class="meta"><span class="stt draft">Draft</span><span class="mono">157 words</span></span></button><button class="row-item" type="button" data-reference-row><span class="txt">Calibration</span><span class="meta"><span class="stt revised">Revised</span><span class="mono">89 words</span></span></button><button class="row-item" type="button" data-reference-row><span class="txt">The Copyist</span><span class="meta"><span class="stt final">Final</span><span class="mono">248 words</span></span></button></div></div>
+        <div class="reference-table-block"><span class="lab">Continue list</span><div class="continue-list"><div class="continue-row"><button class="continue-open" type="button" data-reference-row><b>The Copyist</b><small>The Orbit of Hesiod · chapter 03 · Draft</small></button><button class="icon-btn sm" type="button" aria-label="Open The Copyist" data-button-feedback="Opening The Copyist">→</button></div><div class="continue-row"><button class="continue-open" type="button" data-reference-row><b>Scene 2 — Exterior / Walkway</b><small>Weak Signal · Draft</small></button><button class="icon-btn sm" type="button" aria-label="Open Scene 2" data-button-feedback="Opening Scene 2">→</button></div></div></div>
+        <div class="reference-table-block"><span class="lab">Notebook list</span><div class="notebook-list"><button class="notebook-row" type="button" aria-current="true" data-reference-note><span class="notebook-row-top"><span class="lab">Character</span><small>Orbit of Hesiod</small></span><h2>Vera Kallas</h2><p>Competent before she is doubtful.</p></button><button class="notebook-row" type="button" aria-current="false" data-reference-note><span class="notebook-row-top"><span class="lab">Note</span><small>Orbit of Hesiod</small></span><h2>The fragments</h2><p>The papers had been catalogued for forty years.</p></button></div></div>
+        <div class="reference-table-block"><span class="lab">Length references</span><div class="length-reference-list"><button class="length-reference" type="button" aria-pressed="true" data-reference-length><b>The Stranger</b><span>~36,000 words</span></button><button class="length-reference" type="button" aria-pressed="false" data-reference-length><b>Beloved</b><span>~92,000 words</span></button><button class="length-reference" type="button" aria-pressed="false" data-reference-length><b>Middlemarch</b><span>~315,000 words</span></button></div></div>
+      </div>
+    </section>
+
+    <section class="button-group button-group-motion" aria-labelledby="motion-title">
+      <div class="button-group-label"><span class="lab">06 / motion</span><h2 id="motion-title">Every movement in one place</h2></div>
+      <div class="button-group-content button-stack">
+        <p class="motion-reference-copy">Lists, tabs and formatting stay instant. These are the only movements worth keeping: a complete theme change, a deliberate target update, a panel moving into view, and a confirmation.</p>
+        <div class="motion-reference-frame" data-motion-frame>
+          <div class="motion-reference-head"><span class="lab">Motion sampler</span><button class="btn ghost tiny" type="button" data-motion-replay>Replay motion</button></div>
+          <div class="motion-reference-body">
+            <button class="motion-reference-card" type="button" data-motion-wipe><span class="lab">01 / theme change</span><b>Paper to Ink</b><small>One full-page wipe, once.</small></button>
+            <div class="motion-reference-progress"><span class="lab">02 / target changed</span><div class="quota is-target-change"><i data-motion-progress></i></div></div>
+            <div class="motion-reference-drawer-wrap"><button class="motion-reference-drawer-toggle" type="button" data-motion-drawer-toggle><span class="lab">03 / spatial change</span>Open the side panel</button><aside class="motion-reference-drawer" data-motion-drawer><span class="lab">Reference</span><b>Panel open</b></aside></div>
+            <div class="motion-reference-toolbar-wrap"><button class="motion-reference-toolbar-toggle" type="button" data-motion-toolbar-toggle><span class="lab">04 / spatial change</span>Reveal formatting</button><div class="motion-reference-toolbar" data-motion-toolbar><button class="format-btn strong" type="button" aria-label="Bold">B</button><button class="format-btn italic" type="button" aria-label="Italic">I</button><button class="format-btn typeface" type="button">Serif</button></div></div>
+          </div>
+        </div>
+        <button class="btn tiny" type="button" data-motion-toast>Show save confirmation</button>
+      </div>
+    </section>
+
+  <footer class="button-feedback" id="feedback" aria-live="polite"><span class="lab">Interaction</span><span data-button-feedback-output>Choose a button to test its state.</span></footer>
+  </main>
+  <div class="toast" role="status" data-reference-toast>Saved locally</div>
+  <script src="buttons.js"></script>
+</body>
+</html>

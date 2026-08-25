@@ -1,0 +1,350 @@
+.button-reference {
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  --reference-motion-theme: 260ms;
+  --reference-motion-spatial: 180ms;
+  --reference-motion-feedback: 160ms;
+}
+.button-reference .theme-wipe.run { animation: reference-theme-wipe var(--reference-motion-theme) cubic-bezier(.5,0,.1,1) forwards; }
+@keyframes reference-theme-wipe { 0% { transform: scaleX(0); transform-origin: left center; } 49% { transform: scaleX(1); transform-origin: left center; } 50% { transform: scaleX(1); transform-origin: right center; } 100% { transform: scaleX(0); transform-origin: right center; } }
+.button-reference-main {
+  width: min(1080px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 64px 0 96px;
+}
+.button-reference-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--rule-hard);
+}
+.button-reference-head h1 {
+  margin-top: 9px;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 7vw, 5.8rem);
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+}
+.button-reference-note {
+  max-width: 55ch;
+  margin: 28px 0 64px;
+  color: var(--dim);
+  line-height: 1.65;
+}
+.button-group {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.35fr) minmax(0, 1fr);
+  gap: clamp(32px, 7vw, 112px);
+  padding: 38px 0;
+  border-top: 1px solid var(--rule-hard);
+}
+.button-group-label h2 {
+  margin-top: 11px;
+  font-family: var(--serif);
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+.button-group-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.button-row {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.button-stack {
+  flex-direction: column;
+  gap: 18px;
+  max-width: 440px;
+  width: 100%;
+}
+.button-wide-tabs {
+  max-width: 350px;
+}
+.button-format-set {
+  display: inline-flex;
+  width: max-content;
+}
+.button-icon-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.button-plain-action {
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--rule-hard);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.button-plain-action:hover,
+.button-plain-action:focus-visible {
+  text-decoration: none;
+  border-bottom-color: var(--ink);
+}
+.danger-action:hover {
+  background: var(--faint);
+}
+.button-feedback {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-top: 64px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule-hard);
+  color: var(--dim);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+}
+.button-feedback .lab {
+  flex: 0 0 auto;
+}
+.button-feedback [data-button-feedback-output] {
+  color: var(--ink);
+}
+.button-reference button:not(:disabled),
+.button-reference a[data-button-feedback] {
+  -webkit-tap-highlight-color: transparent;
+}
+.reference-tables {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+.reference-table-block > .lab {
+  display: block;
+  margin-bottom: 9px;
+}
+.reference-frame,
+.continue-list,
+.notebook-list,
+.length-reference-list {
+  border: 1px solid var(--rule-hard);
+}
+.reference-frame .row-item {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+.reference-frame .row-item:last-child { border-bottom: 0; }
+.reference-table-block .notebook-list {
+  min-height: 100%;
+}
+.reference-table-block .continue-open {
+  border: 0;
+  text-align: left;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+.reference-table-block .continue-open:hover {
+  background: transparent;
+}
+.button-reference .row-item,.button-reference .continue-row,.button-reference .notebook-row,.button-reference .length-reference,.button-reference .format-btn,.button-reference .icon-btn,.button-reference .tab { transition: none; }
+.button-group-motion {
+  padding-bottom: 38px;
+}
+.motion-reference-copy {
+  max-width: 53ch;
+  color: var(--dim);
+  line-height: 1.6;
+}
+.motion-reference-frame {
+  width: 100%;
+  border: 1px solid var(--rule-hard);
+  overflow: hidden;
+}
+.motion-reference-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--rule);
+}
+.motion-reference-body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.motion-reference-card,
+.motion-reference-progress,
+.motion-reference-drawer-wrap,
+.motion-reference-toolbar-wrap {
+  min-height: 126px;
+  padding: 17px;
+  border-bottom: 1px solid var(--rule);
+}
+.motion-reference-card,
+.motion-reference-drawer-toggle,
+.motion-reference-toolbar-toggle {
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.motion-reference-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.motion-reference-card .lab,
+.motion-reference-progress .lab {
+  display: block;
+}
+.motion-reference-card b {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  letter-spacing: -0.03em;
+}
+.motion-reference-card small {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  color: var(--dim);
+}
+.motion-reference-card:nth-child(odd),
+.motion-reference-drawer-wrap {
+  border-right: 1px solid var(--rule);
+}
+.motion-reference-progress {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+.motion-reference-progress .quota.is-target-change i {
+  width: 0;
+  transition: width var(--reference-motion-spatial) cubic-bezier(.5,0,.1,1);
+}
+.motion-reference-drawer-wrap,
+.motion-reference-toolbar-wrap {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 0;
+}
+.motion-reference-drawer-toggle,
+.motion-reference-toolbar-toggle {
+  position: relative;
+  z-index: 1;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.motion-reference-drawer-toggle .lab,
+.motion-reference-toolbar-toggle .lab {
+  display: block;
+  margin-bottom: 8px;
+}
+.motion-reference-drawer {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  width: 66%;
+  padding: 17px;
+  background: var(--chrome);
+  border-right: 1px solid var(--rule);
+  transform: translateX(-100%);
+  transition: transform var(--reference-motion-spatial) cubic-bezier(0.5, 0, 0.1, 1);
+}
+.motion-reference-drawer b {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  letter-spacing: -0.03em;
+}
+.motion-reference-drawer.is-open {
+  transform: none;
+}
+.motion-reference-toolbar {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: flex;
+  border: 1px solid var(--rule);
+  background: var(--chrome);
+  transform: translateY(-150%);
+  transition: transform var(--reference-motion-feedback) linear;
+}
+.motion-reference-toolbar.is-open {
+  transform: none;
+}
+.button-reference .toast { transition-duration: var(--reference-motion-feedback); }
+@media (prefers-reduced-motion: reduce) {
+  .motion-reference-drawer,
+  .motion-reference-toolbar {
+    transition: none;
+  }
+}
+@media (max-width: 680px) {
+  .button-reference-main {
+    width: calc(100% - 36px);
+    padding-top: 38px;
+  }
+  .button-reference-head {
+    align-items: center;
+    padding-bottom: 24px;
+  }
+  .button-reference-head h1 {
+    font-size: 3.5rem;
+  }
+  .button-reference-note {
+    margin: 24px 0 44px;
+  }
+  .button-group {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 32px 0;
+  }
+  .button-group-label h2 {
+    font-size: 1.8rem;
+  }
+  .reference-tables,
+  .motion-reference-body {
+    grid-template-columns: 1fr;
+  }
+  .motion-reference-card:nth-child(odd),
+  .motion-reference-drawer-wrap {
+    border-right: 0;
+  }
+  .motion-reference-card:nth-child(3),
+  .motion-reference-drawer-wrap {
+    border-bottom: 1px solid var(--rule);
+  }
+  .button-feedback {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 44px;
+  }
+  .tabs .tab {
+    min-height: 36px;
+  }
+  .button-wide-tabs {
+    width: 100%;
+  }
+}

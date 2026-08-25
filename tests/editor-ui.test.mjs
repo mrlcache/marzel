@@ -1,0 +1,81 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import { readFile } from "node:fs/promises";
+
+const root = new URL("../", import.meta.url);
+const read = (path) => readFile(new URL(path, root), "utf8");
+
+test("editor exposes an accessible formatting toolbar and selection command", async () => {
+  const [html, js, css, notebookData] = await Promise.all([read("editor.html"), read("editor.js"), read("editor.css"), read("notebook-data.js")]);
+  assert.match(html, /id="format-bar"[^>]*role="toolbar"/);
+  assert.match(html, /data-format-font="serif"/);
+  assert.match(html, /data-scale-delta="-1"/);
+  assert.match(html, /data-inline="bold"/);
+  assert.doesNotMatch(html, /id="format-scale"/);
+  assert.doesNotMatch(html, /paragraph-leading|Leading/);
+  assert.match(html, /id="create-chapter-from-selection"/);
+  assert.match(html, /id="chap-title" placeholder="Untitled Chapter 1"/);
+  assert.match(html, /data-selection-inline="bold"/);
+  assert.match(html, /data-selection-inline="italic"/);
+  assert.match(html, /id="checkpoints"/);
+  assert.match(html, /id="export-project"/);
+  assert.match(js, /function createChapterFromSelection\(/);
+  assert.match(js, /Private checkpoints/);
+  assert.match(js, /openProjectExportDialog/);
+  assert.match(js, /downloadProjectDocx/);
+  assert.match(js, /downloadProjectHtml/);
+  assert.match(js, /printProject/);
+  assert.match(js, /data-export-format="docx"/);
+  assert.match(js, /data-export-format="html"/);
+  assert.match(js, /checkpointChapter/);
+  assert.doesNotMatch(js, /setParagraphLeading|compositionButtons\("leading"/);
+  assert.doesNotMatch(js, /compositionButtons\("font"/);
+  assert.doesNotMatch(js, /compositionButtons\("scale"/);
+  assert.match(js, /"First-line indent"/);
+  assert.match(css, /white-space:pre-wrap/);
+  assert.match(css, /text-indent:var\(--prose-indent\)/);
+  assert.match(css, /\.sheet-export/);
+});
+
+test("editor exposes an in-place Notebook drawer with search and context filters", async () => {
+  const [html, js, css, notebookData] = await Promise.all([read("editor.html"), read("editor.js"), read("editor.css"), read("notebook-data.js")]);
+  assert.match(html, /id="notebook-toggle"/);
+  assert.match(html, /id="editor-notebook"[^>]*aria-hidden="true"/);
+  assert.match(html, /id="notebook-full-link"[^>]*>Open full Notebook</);
+  assert.match(html, /<button[^>]*id="notebook-add-note"[^>]*>Add note</);
+  assert.match(html, /id="notebook-query"[^>]*type="search"/);
+  assert.match(html, /data-notebook-filter="note"/);
+  assert.match(html, /data-notebook-filter="chapter-note"/);
+  assert.match(html, /data-notebook-filter="character"/);
+  assert.match(js, /from "\.\/notebook-data\.js"/);
+  assert.match(js, /loadNotebookRecords\(\)/);
+  assert.match(notebookData, /"Chapter notes"/);
+  assert.match(notebookData, /"Characters"/);
+  assert.match(js, /function renderNotebookDrawer\(/);
+  assert.match(js, /notebook-add-note/);
+  assert.match(js, /function openNotebookNoteDialog\(/);
+  assert.match(js, /data-note-draft-type/);
+  assert.match(js, /db\.createNote\(\{ title: title \|\| "Untitled note", body, projectId: noteProjectId \}\)/);
+  assert.match(js, /db\.createCharacter\(noteProjectId/);
+  assert.match(js, /notebook-note-role/);
+  assert.match(js, /role="dialog" aria-modal="true"/);
+  assert.match(js, /setNotebookOpen\(true\)/);
+  assert.match(js, /document\.documentElement\.classList\.remove\("insp-open"\)/);
+  assert.match(js, /document\.documentElement\.classList\.add\("insp-closed"\)/);
+  assert.match(js, /function inspectorIsOpen\(\)/);
+  assert.match(js, /setInspectorOpen\(!inspectorIsOpen\(\)\)/);
+  assert.match(js, /notebookQueryInput\.addEventListener\("input"/);
+  assert.match(css, /\.editor-notebook-backdrop\{/);
+  assert.match(css, /\.editor-notebook\{/);
+  assert.match(css, /:root\.insp-closed:not\(\.focus\) \.ed/);
+  assert.match(css, /transition:grid-template-columns var\(--motion-spatial\)/);
+  assert.match(css, /transform:translateX\(10px\)/);
+  assert.match(css, /\.notebook-note-modal \.modal-box/);
+});
+
+test("full Notebook can open directly in a general-note draft", async () => {
+  const notebook = await read("notebook.js");
+  assert.match(notebook, /const newNote = params\.get\("new"\) === "note"/);
+  assert.match(notebook, /projectId: params\.get\("project"\) \|\| ""/);
+  assert.match(notebook, /const draftProjectId = selected\?\.new/);
+});

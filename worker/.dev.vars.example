@@ -1,0 +1,5 @@
+DATABASE_URL=postgresql://user:password@host-pooler.neon.tech/database?sslmode=require
+SESSION_SECRET=replace-with-a-long-random-value
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+POSTHOG_PROJECT_API_KEY=

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Marzel is a quiet writing workspace for books, screenplays, stories and essays.">
+  <title>Marzel: a quieter place to write</title>
+  <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+  <meta name="theme-color" content="#F1ECE1" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#16130F" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="theme.js"></script><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="landing.css?v=32">
+</head>
+<body class="landing">
+  <header class="landing-top wrap">
+    <a href="#top" class="wm landing-mark" aria-label="Marzel home">marze<i class="l"></i></a>
+    <nav class="landing-nav" aria-label="Main navigation">
+      <a href="#manuscript">The manuscript</a>
+      <a href="#ownership">Your writing</a>
+      <div class="tabs theme landing-theme" aria-label="Theme">
+        <button class="tab" type="button" data-theme-set="light">Paper</button><button class="tab" type="button" data-theme-set="dark">Ink</button><button class="tab" type="button" data-theme-set="auto">Auto</button>
+      </div>
+      <a class="btn ghost tiny landing-open" href="account.html">Sign in</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="landing-hero wrap" aria-labelledby="landing-title">
+      <div class="hero-copy">
+        <span class="lab solid">Marzel Writer</span>
+        <h1 id="landing-title">Write the thing.<br>Shape the page.<br><em>Stay with it.</em></h1>
+        <p class="hero-lede">A quiet writing workspace for the work that outgrows a blank document: books, screenplays, stories and essays.</p>
+        <div class="hero-actions">
+          <a class="btn" href="projects.html?new=1">Start a manuscript <span aria-hidden="true">&#8594;</span></a>
+          <a class="text-action" href="now.html">Write now <span aria-hidden="true">&#8594;</span></a>
+        </div>
+        <p class="hero-note"><span class="lab">Local first</span>No account needed. Export anytime. Cloud backup is optional.</p>
+      </div>
+
+      <figure class="hero-preview" data-manuscript-preview aria-label="An interactive Marzel project preview with chapters, manuscript and references together">
+        <figcaption class="preview-bar"><span class="wm">marze<i class="l"></i></span><span class="mono">The Orbit of Hesiod / <span data-preview-bar-title>The Error in the Sky</span></span><span class="lab solid" data-preview-save>Saved</span></figcaption>
+        <div class="preview-workspace">
+          <aside class="preview-chapters"><span class="lab">Manuscript</span><div class="preview-chapter-list" role="tablist" aria-label="Sample manuscript chapters"><button class="preview-chapter is-active" type="button" role="tab" aria-selected="true" aria-controls="preview-page" data-preview-chapter="c1"><small>Ch. 01</small><b>The Error in the Sky</b><em>157 words</em></button><button class="preview-chapter" type="button" role="tab" aria-selected="false" aria-controls="preview-page" data-preview-chapter="c2"><small>Ch. 02</small><b>Calibration</b><em>89 words</em></button><button class="preview-chapter" type="button" role="tab" aria-selected="false" aria-controls="preview-page" data-preview-chapter="c3"><small>Ch. 03</small><b>The Copyist</b><em>2 words</em></button></div><div class="preview-target"><span>Target</span><b>248 / 80,000</b><i></i></div></aside>
+          <div class="preview-page" id="preview-page" role="tabpanel" aria-live="polite">
+            <span class="lab" data-preview-label>Continue writing</span>
+            <h2 data-preview-title>The Error in the Sky</h2>
+            <p class="preview-meta" data-preview-meta>The Orbit of Hesiod <span>&middot;</span> Book <span>&middot;</span> Final</p>
+            <div class="preview-rule"></div>
+            <div class="preview-prose" data-preview-prose><p>The first thing Vera noticed was not the star. It was the space where the star should have been.</p><p>The fragment had sat under glass for forty years, catalogued, photographed and cited in two hundred papers.</p><p>She measured again. She measured a third time, against the calibration rule, against her own transcription.</p></div>
+          </div>
+          <aside class="preview-reference"><span class="lab">Reference</span><div class="preview-reference-tabs" role="tablist" aria-label="Sample project reference"><button class="preview-reference-tab is-active" type="button" role="tab" aria-selected="true" data-preview-reference="character">Character</button><button class="preview-reference-tab" type="button" role="tab" aria-selected="false" data-preview-reference="chapter-note">Chapter note</button></div><div class="preview-reference-item" data-preview-reference-body aria-live="polite"><small>Character</small><b>Vera Kallas</b><p>Archaeologist, 41. Competent before she is doubtful.</p></div><a href="notebook.html?project=p-orbit">Open notebook &#8594;</a></aside>
+        </div>
+        <div class="preview-foot"><span>Serif</span><span>Standard width</span><span>1.72 leading</span></div>
+      </figure>
+    </section>
+
+    <section class="manuscript-feature wrap" id="manuscript" aria-labelledby="manuscript-title">
+      <div class="manuscript-feature-copy"><span class="lab">01 / the manuscript</span><h2 id="manuscript-title">More structure than a document. Less to manage than a writing suite.</h2><p>Chapters, characters, notes and the page itself stay in one project, so the work grows without turning into document administration.</p></div>
+      <div class="demo-surface demo-project manuscript-feature-demo" data-library-demo aria-label="An interactive project outline with chapters, character notes and research"><div class="demo-rail"><div class="demo-tabs" role="tablist" aria-label="Project material"><button class="demo-tab is-active" type="button" role="tab" aria-selected="true" data-library-tab="chapters">Chapters</button><button class="demo-tab" type="button" role="tab" aria-selected="false" data-library-tab="characters">Characters</button><button class="demo-tab" type="button" role="tab" aria-selected="false" data-library-tab="notes">Notes</button></div><div class="demo-item-list" data-library-items><button class="demo-item is-active" type="button" data-library-item="c1">01&nbsp; The Error in the Sky</button><button class="demo-item" type="button" data-library-item="c2">02&nbsp; Calibration</button><button class="demo-item" type="button" data-library-item="c3">03&nbsp; The Copyist</button></div></div><div class="demo-detail" data-library-detail aria-live="polite"><span class="lab">Chapter note</span><h4>The Error in the Sky</h4><p>Establish her competence before any doubt. The reader has to believe the reading before doubting the text.</p><a href="editor.html?p=p-orbit&amp;c=c1">Open chapter &#8594;</a></div></div>
+    </section>
+
+    <section class="origin wrap" aria-labelledby="origin-title">
+      <div class="origin-index"><span class="lab">02 / why it exists</span></div>
+      <div class="origin-copy"><h2 id="origin-title">Built for the moment a small draft becomes a real project.</h2><p>Marzel is designed for manuscripts that have outgrown scattered documents. Check a character detail, move between chapters and keep the information around the page close to the sentence.</p><p>The goal is not another system to learn. It is one quiet place where the manuscript, the page around it and the information it depends on can stay close.</p><p class="origin-signature">Made for writers who want to stay with the work.</p></div>
+    </section>
+
+    <section class="ownership wrap" id="ownership" aria-labelledby="ownership-title">
+      <div class="ownership-copy"><span class="lab">03 / yours to keep</span><h2 id="ownership-title">Local by default, portable by design.</h2><p>Your projects stay on this device unless you choose to make a cloud copy. You can begin without an account, export whenever you want and restore a complete backup later.</p></div>
+      <div class="ownership-list" role="list">
+        <div class="ownership-row ownership-row-static" role="listitem"><span class="form-no">01</span><div><h3>Stored locally on this device</h3><p>No account is needed to begin. Export individual projects or back up the complete library whenever you want.</p></div></div>
+        <a class="ownership-row" role="listitem" href="account.html#portable-writing"><span class="form-no">02</span><div><h3>Back up the whole library</h3><p>Keep a restorable copy, or export clean files from any project.</p></div><span class="ownership-arrow" aria-hidden="true">&#8594;</span></a>
+        <a class="ownership-row" role="listitem" href="projects.html"><span class="form-no">03</span><div><h3>Bring in existing work</h3><p>Drop TXT, Markdown, RTF, DOCX, ODT, FDX, Fountain or ZIP files to continue them here.</p></div><span class="ownership-arrow" aria-hidden="true">&#8594;</span></a>
+      </div>
+    </section>
+
+    <section class="manuscripts wrap" aria-labelledby="manuscripts-title">
+      <div class="manuscript-intro"><span class="lab">04 / made for books</span><h2 id="manuscripts-title">Start with the novel. Keep the rest open.</h2><p>Built around the needs of a long manuscript: chapters, characters, notes, targets and a page made for sustained reading.</p></div>
+      <div class="book-focus"><span class="lab">Book project</span><h3>Room for the long middle.</h3><p>Keep the manuscript moving while its context stays close.</p><div class="book-progress"><span>Draft</span><i></i><span>80,000 words</span></div><div class="also-made"><span class="lab">Also built for</span><div><b>Screenplays</b><b>Short stories</b><b>Essays</b></div></div></div>
+    </section>
+
+    <section class="landing-close wrap" aria-labelledby="close-title">
+      <span class="lab solid">The page is ready</span>
+      <h2 id="close-title">Your next chapter does not need another setup process.</h2>
+      <p class="trust-note">Free to use &middot; no account &middot; your project stays on your device</p>
+      <a class="btn" href="projects.html?new=1">Start writing <span aria-hidden="true">&#8594;</span></a>
+    </section>
+  </main>
+
+  <footer class="landing-footer wrap"><span class="wm">marze<i class="l"></i></span><span class="mono">A quieter writing workspace.</span><a class="mono" href="now.html">Open Writer &#8594;</a></footer>
+  <script type="module" src="landing.js"></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marzel — editor</title>
+<link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+<meta name="theme-color" content="#F1ECE1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16130F" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="theme.js"></script>
+<link rel="stylesheet" href="base.css">
+<link rel="stylesheet" href="editor.css?v=20260820g">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-back" viewBox="0 0 16 16">
+    <path d="M9.5 3.5 5 8l4.5 4.5M5 8h9.5" fill="none" stroke="currentColor" stroke-width="1"/>
+  </symbol>
+
+  <symbol id="i-plus" viewBox="0 0 16 16">
+    <path d="M8 2.5v11M2.5 8h11" fill="none" stroke="currentColor" stroke-width="1"/>
+  </symbol>
+
+  <symbol id="i-focus" viewBox="0 0 16 16">
+    <path d="M2.5 5.5v-3h3M10.5 2.5h3v3M13.5 10.5v3h-3M5.5 13.5h-3v-3" fill="none" stroke="currentColor" stroke-width="1"/>
+  </symbol>
+
+  <symbol id="i-shrink" viewBox="0 0 16 16">
+    <path d="M5.5 2.5v3h-3M13.5 5.5h-3v-3M10.5 13.5v-3h3M2.5 10.5h3v3" fill="none" stroke="currentColor" stroke-width="1"/>
+  </symbol>
+
+  <symbol id="i-close" viewBox="0 0 16 16">
+    <path d="M3.5 3.5 12.5 12.5M12.5 3.5 3.5 12.5" fill="none" stroke="currentColor" stroke-width="1"/>
+  </symbol>
+
+  <symbol id="i-up" viewBox="0 0 16 16">
+    <path d="M8 13.5v-11M3.5 7 8 2.5 12.5 7" fill="none" stroke="currentColor" stroke-width="1"/>
+  </symbol>
+
+  <symbol id="i-down" viewBox="0 0 16 16">
+    <path d="M8 2.5v11M3.5 9 8 13.5 12.5 9" fill="none" stroke="currentColor" stroke-width="1"/>
+  </symbol>
+
+  <symbol id="i-panel" viewBox="0 0 16 16">
+    <rect x="2.5" y="2.5" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1"/>
+    <path d="M10.5 2.5v11" fill="none" stroke="currentColor" stroke-width="1"/>
+  </symbol>
+
+  <symbol id="i-notebook" viewBox="0 0 16 16">
+    <path d="M3.5 2.5h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-8z" fill="none" stroke="currentColor" stroke-width="1"/>
+    <path d="M5.5 5h5M5.5 8h5M5.5 11h3" fill="none" stroke="currentColor" stroke-width="1"/>
+    <path d="M2 4.5h1.5M2 8h1.5M2 11.5h1.5" fill="none" stroke="currentColor" stroke-width="1"/>
+  </symbol>
+
+  <symbol id="i-burger" viewBox="0 0 16 16">
+    <path d="M2.5 4.5h11M2.5 8.5h11M2.5 12.5h11" fill="none" stroke="currentColor" stroke-width="1"/>
+  </symbol>
+</svg>
+
+<header class="ed-top">
+  <div class="ed-top-l">
+    <a class="icon-btn" href="now.html" aria-label="Back to Now" title="Now">
+      <svg class="glyph" aria-hidden="true"><use href="#i-back"/></svg>
+    </a>
+    <button class="icon-btn only-s" id="nav-toggle" aria-label="Chapters">
+      <svg class="glyph" aria-hidden="true"><use href="#i-burger"/></svg>
+    </button>
+    <div class="crumb">
+      <span class="wm">marze<i class="l"></i></span>
+      <span class="sep">/</span>
+      <a class="proj-name" id="crumb-project" href="now.html">—</a>
+      <span class="sep">/</span>
+      <span class="chap-name" id="crumb-chapter">—</span>
+    </div>
+  </div>
+
+  <div class="ed-top-r">
+    <span class="save" id="save-state"><i></i><span>Saved</span></span>
+
+    <div class="tabs theme ed-theme" title="Theme">
+      <button class="tab" data-theme-set="light">Paper</button>
+      <button class="tab" data-theme-set="dark">Ink</button>
+      <button class="tab" data-theme-set="auto">Auto</button>
+    </div>
+
+    <div class="tabs" id="face" role="tablist" title="Manuscript body">
+      <button class="tab" role="tab" data-face="prose" aria-selected="true">Prose</button>
+      <button class="tab" role="tab" data-face="script" aria-selected="false">Screenplay</button>
+    </div>
+
+    <div class="format-bar" id="format-bar" role="toolbar" aria-label="Text formatting">
+      <div class="format-set" role="group" aria-label="Typeface">
+        <button class="format-btn typeface" type="button" data-format-font="serif" aria-pressed="true">Serif</button>
+        <button class="format-btn typeface" type="button" data-format-font="sans" aria-pressed="false">Sans</button>
+      </div>
+      <span class="format-divider" aria-hidden="true"></span>
+      <div class="format-set" role="group" aria-label="Text size">
+        <button class="format-btn type-size" type="button" data-scale-delta="-1" aria-label="Decrease text size">A−</button>
+        <button class="format-btn type-size" type="button" data-scale-delta="1" aria-label="Increase text size">A+</button>
+      </div>
+      <span class="format-divider" aria-hidden="true"></span>
+      <div class="format-set" role="group" aria-label="Inline formatting">
+        <button class="format-btn strong" type="button" data-inline="bold" aria-label="Bold" aria-pressed="false">B</button>
+        <button class="format-btn italic" type="button" data-inline="italic" aria-label="Italic" aria-pressed="false">I</button>
+      </div>
+    </div>
+
+    <button class="icon-btn" id="insp-toggle" aria-label="Inspector" title="Inspector (I)">
+      <svg class="glyph" aria-hidden="true"><use href="#i-panel"/></svg>
+    </button>
+    <button class="icon-btn" id="notebook-toggle" aria-label="Notebook" aria-pressed="false" title="Notebook">
+      <svg class="glyph" aria-hidden="true"><use href="#i-notebook"/></svg>
+    </button>
+    <button class="icon-btn" id="focus-toggle" aria-label="Focus mode" title="Focus (F)">
+      <svg class="glyph" aria-hidden="true"><use href="#i-focus"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="ed">
+
+  <nav class="ed-nav pane" id="ed-nav">
+    <div class="nav-head">
+      <span class="lab">Manuscript</span>
+      <button class="icon-btn sm" id="add-chapter" aria-label="New chapter" title="New chapter">
+        <svg class="glyph" aria-hidden="true"><use href="#i-plus"/></svg>
+      </button>
+    </div>
+    <ol class="chaps" id="chaps"></ol>
+    <div class="nav-foot">
+      <div class="nav-stat">
+        <span class="lab">Target</span>
+        <span class="mono num" id="nav-target">—</span>
+      </div>
+      <div class="quota"><i id="nav-bar" style="width:0%"></i></div>
+      <div class="nav-stat" style="margin-top:9px">
+        <span class="mono num" id="nav-words" style="color:var(--ink)">0</span>
+        <span class="mono num" id="nav-pct">0%</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="ed-main">
+    <div class="sheet">
+      <input class="sheet-title" id="chap-title" placeholder="Untitled Chapter 1" autocomplete="off" spellcheck="false">
+      <div class="sheet-meta">
+        <span class="lab" id="sheet-project">—</span>
+        <span class="lab" id="sheet-kind">—</span>
+        <span class="lab" id="sheet-when">—</span>
+        <button class="sheet-export" id="export-project" type="button">Export manuscript</button>
+      </div>
+      <div class="doc" id="doc" contenteditable="true" role="textbox" aria-multiline="true" spellcheck="true"
+        data-placeholder="Start anywhere. The first sentence does not have to be the first sentence."></div>
+    </div>
+  </main>
+
+  <aside class="ed-insp pane" id="ed-insp">
+    <div class="insp-block">
+      <span class="lab">Chapter status</span>
+      <div class="tabs fill" id="status" role="tablist" style="margin-top:10px">
+        <button class="tab" role="tab" data-status="draft" aria-selected="true">Draft</button>
+        <button class="tab" role="tab" data-status="revised" aria-selected="false">Revised</button>
+        <button class="tab" role="tab" data-status="final" aria-selected="false">Final</button>
+      </div>
+    </div>
+
+    <div class="insp-block" id="composition"></div>
+
+    <div class="insp-block">
+      <span class="lab">This chapter</span>
+      <dl class="stats">
+        <div><dt>Words</dt><dd class="num" id="s-words">0</dd></div>
+        <div><dt>Characters</dt><dd class="num" id="s-chars">0</dd></div>
+        <div><dt>Paragraphs</dt><dd class="num" id="s-paras">0</dd></div>
+        <div><dt>Read time</dt><dd class="num" id="s-read">—</dd></div>
+      </dl>
+    </div>
+
+    <div class="insp-block">
+      <span class="lab">Session</span>
+      <dl class="stats">
+        <div><dt>Written now</dt><dd class="num" id="s-session">0</dd></div>
+        <div><dt>Today</dt><dd class="num" id="s-today">0</dd></div>
+      </dl>
+      <div class="quota" style="margin-top:12px"><i id="s-goal-bar" style="width:0%"></i></div>
+      <p class="insp-note" id="s-goal-note">—</p>
+    </div>
+
+    <div class="insp-block">
+      <span class="lab">Chapter notes</span>
+      <textarea class="inp" id="notes" rows="5" style="margin-top:10px"
+        placeholder="What this chapter has to deliver. Stays out of the manuscript."></textarea>
+    </div>
+
+    <div class="insp-block" id="checkpoints"></div>
+
+    <div class="insp-block">
+      <span class="lab">Project premise</span>
+      <p class="insp-syn" id="insp-syn">—</p>
+    </div>
+
+    <div class="insp-block">
+      <div class="insp-title-row"><span class="lab">Notebook</span><button class="mono inspector-action" id="open-notebook" type="button">Open</button></div>
+      <div class="editor-reference" id="editor-reference"></div>
+    </div>
+
+  </aside>
+</div>
+
+<div class="editor-notebook-backdrop" id="editor-notebook-backdrop"></div>
+<aside class="editor-notebook pane" id="editor-notebook" aria-label="Notebook" aria-hidden="true">
+  <div class="editor-notebook-head">
+    <div>
+      <span class="lab">Notebook</span>
+      <h2>Notebook</h2>
+    </div>
+    <div class="editor-notebook-head-actions">
+      <a class="btn ghost tiny" id="notebook-full-link" href="notebook.html">Open full Notebook</a>
+      <button class="btn tiny notebook-add-note" id="notebook-add-note" type="button" aria-label="Add a general Notebook note">Add note</button>
+      <button class="icon-btn sm" id="notebook-close" type="button" aria-label="Close Notebook" title="Close Notebook">
+        <svg class="glyph" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="editor-notebook-tools">
+    <label class="sr-only" for="notebook-query">Search Notebook</label>
+    <input class="inp" id="notebook-query" type="search" placeholder="Search notes, chapter notes and characters" autocomplete="off">
+    <div class="tabs fill" id="notebook-filters" role="tablist" aria-label="Notebook records">
+      <button class="tab" type="button" role="tab" data-notebook-filter="all" aria-selected="true">All</button>
+      <button class="tab" type="button" role="tab" data-notebook-filter="note" aria-selected="false">Notes</button>
+      <button class="tab" type="button" role="tab" data-notebook-filter="chapter-note" aria-selected="false">Chapter notes</button>
+      <button class="tab" type="button" role="tab" data-notebook-filter="character" aria-selected="false">Characters</button>
+    </div>
+    <div class="editor-notebook-summary"><span class="lab">Available context</span><span class="mono" id="notebook-count">0 records</span></div>
+  </div>
+  <div class="editor-notebook-grid">
+    <section class="editor-notebook-list" id="editor-notebook-list" aria-label="Notebook records"></section>
+    <section class="editor-notebook-detail" id="editor-notebook-detail" aria-live="polite"></section>
+  </div>
+</aside>
+
+<div class="selection-menu" id="selection-menu" role="menu" hidden>
+  <button class="selection-menu-item selection-inline" type="button" role="menuitem" data-selection-inline="bold"><span class="selection-mark strong">B</span>Bold</button>
+  <button class="selection-menu-item selection-inline" type="button" role="menuitem" data-selection-inline="italic"><span class="selection-mark italic">I</span>Italic</button>
+  <span class="selection-menu-rule" aria-hidden="true"></span>
+  <button class="selection-menu-item" type="button" role="menuitem" id="create-chapter-from-selection">Create chapter from selection</button>
+</div>
+
+<footer class="ed-status">
+  <div class="st-l">
+    <span class="mono num" id="f-words">0 words</span>
+    <span class="sep">·</span>
+    <span class="mono num" id="f-session">session 0</span>
+    <span class="sep">·</span>
+    <span class="mono" id="f-read">—</span>
+  </div>
+  <div class="st-r">
+    <span class="mono" id="f-hint">F focus · I inspector · Ctrl+S saves</span>
+  </div>
+</footer>
+
+<script type="module" src="editor.js?v=20260820g"></script>
+</body>
+</html>
